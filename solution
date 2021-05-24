@@ -1,0 +1,48 @@
+// question link   ----->>>>   https://www.codechef.com/submit/TLAPM
+
+#include <iostream>
+#define int long long
+using namespace std;
+int a[1000+7][1000+7];
+
+signed main() {
+    int i,j;
+    for(i=1;i<=1000;i++)
+    {
+        if(i==1)
+        {
+            a[i][1]=1;
+        }
+        else
+        {
+            a[i][1]= a[i-1][1]+i;
+        }
+        
+        for(j=2;j<=1000;j++)
+        {
+            a[i][j] = a[i][j-1] + j-1+i-1;
+        }
+    }
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int x1,y1,x2,y2;
+        cin>>x1>>y1>>x2>>y2;
+        int sum=0;
+        
+            for(i=x1;i<=x2;i++)
+            {
+                sum += a[i][y1];
+            }
+    
+        
+            for(j=y1+1;j<=y2;j++)
+            {
+                sum += a[x2][j];
+            }
+        
+        cout<<sum<<"\n";
+    }
+	return 0;
+}
